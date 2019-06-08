@@ -13,7 +13,7 @@ class BindOService: JobIntentService() {
 
     override fun onCreate() {
         super.onCreate()
-        println("zune: 测试bindservice")
+        println("zune: 测试bindservicehahaha")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
