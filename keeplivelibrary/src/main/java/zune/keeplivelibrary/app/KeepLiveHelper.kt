@@ -38,6 +38,7 @@ import zune.keeplivelibrary.util.CrashHandler
  * Created by leigong2 on 2018-06-07 007.
  */
 class KeepLiveHelper {
+    //ceshi 
     private var mContext: Application? = null
     private var hasRegister = false
     private var mClazz: Class<out Service>? = null
