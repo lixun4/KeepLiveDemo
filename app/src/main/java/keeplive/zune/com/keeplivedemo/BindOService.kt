@@ -40,6 +40,7 @@ class BindOService: JobIntentService() {
         println("zune: 测试bindservice")
     }
 
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         println("zune: 测试bindservice start")
         return super.onStartCommand(intent, flags, startId)
@@ -47,7 +48,6 @@ class BindOService: JobIntentService() {
 
     override fun onDestroy() {
         super.onDestroy()
-        running=false
         TxtLog.writeDataToSDCard("zune: 测试bindservice onDestroy")
         println("zune: 测试bindservice onDestroy")
     }
