@@ -9,28 +9,26 @@ import android.support.v4.app.JobIntentService
  * Created by leigong2 on 2018-06-16 016.
  */
 class BindOService: JobIntentService() {
-    private var mHandler: Handler? = null
     private var sendMsgThread: Thread? = null
     private var running = true
+    private val timeSpan = 1 * 60 * 1000 //TODO: need to change to a reasonable value
+    private var mHandler: Handler? = Handler(Handler.Callback {
+        TxtLog.writeDataToSDCard("请求定位的handler开始干活啦7.0及以上")
+        false
+    })
     override fun onHandleWork(intent: Intent) {
 
     }
 
     override fun onCreate() {
         super.onCreate()
-        println("zune: 测试bindservice")
-        mHandler = Handler(Handler.Callback {
-           TxtLog.writeDataToSDCard("123455")
-            false
-        })
-
         sendMsgThread = object : Thread() {
             override fun run() {
                 while (running && mHandler != null) {
                     mHandler!!.sendMessage(Message())
 
                     try {
-                        Thread.sleep(1*60*1000)
+                        Thread.sleep(timeSpan.toLong())
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }
@@ -38,11 +36,12 @@ class BindOService: JobIntentService() {
                 }
             }
         }
-        (sendMsgThread as Thread).start()
+        sendMsgThread!!.start()
+        println("zune: 测试bindservice")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        TxtLog.writeDataToSDCard("zune: 测试bindservice start")
+        println("zune: 测试bindservice start")
         return super.onStartCommand(intent, flags, startId)
     }
 
